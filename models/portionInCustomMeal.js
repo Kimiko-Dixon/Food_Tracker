@@ -1,9 +1,9 @@
 const {Model,DataTypes} = require('sequelize')
 const sequelize = require('../config/connection.js')
 
-class MealsInDay extends Model{}
+class PortionInCustomMeal extends Model{}
 
-MealsInDay.init(
+PortionInCustomMeal.init(
     {
         id:{
             type: DataTypes.INTEGER,
@@ -11,17 +11,17 @@ MealsInDay.init(
             autoIncrement: true,
             primaryKey:true
         },
-        meal_id:{
+        portion_id:{
             type: DataTypes.INTEGER,
             references:{
-                model:'meal',
+                model:'portion',
                 key:'id'
             }
         },
-        day_id:{
+        custom_meal_id:{
             type: DataTypes.INTEGER,
             references:{
-                model:'day',
+                model:'custom_meal',
                 key:'id'
             }
         }
@@ -31,9 +31,9 @@ MealsInDay.init(
         timestamps:false,
         freezeTableName: true,
         underscored: true,
-        modelName:'meals_in_day'
+        modelName:'portion_in_custom_meal'
 
     }
 )
 
-module.exports = MealsInDay
+module.exports = PortionInCustomMeal

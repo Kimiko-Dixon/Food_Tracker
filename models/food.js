@@ -1,14 +1,14 @@
-const {Model,DataTypes} = require('sequelize')
+/* const {Model,DataTypes} = require('sequelize')
 const sequelize = require('../config/connection.js')
 
 class Food extends Model{
-    /* calculateCals(protien,carbs,fat){
+    calculateCals(protien,carbs,fat){
         const proteinCals = protien * 4
         const carbCals = carbs * 4
         const fatCals = fat * 9
 
         return (proteinCals + carbCals + fatCals)
-    } */
+    }
 }
 
 Food.init(
@@ -22,7 +22,6 @@ Food.init(
         name:{
             type: DataTypes.STRING,
             allowNull:false,
-            unique:true
         },
         protein:{
             type: DataTypes.DECIMAL,
@@ -40,9 +39,12 @@ Food.init(
             type: DataTypes.DECIMAL,
             allowNull:false
         },
-        portion_size:{
+        serving_size:{
             type:DataTypes.INTEGER,
             allowNull: false
+        },
+        serving_unit:{
+            type:DataTypes.STRING(15)
         }
 
     },
@@ -71,4 +73,4 @@ Food.init(
     }
 )
 
-module.exports = Food
+module.exports = Food */
