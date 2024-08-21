@@ -1,25 +1,15 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection.js");
 
-class Person extends Model {}
+class Users extends Model {}
 
-Person.init(
+Users.init(
   {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-    },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
     },
     height: {
       type: DataTypes.DECIMAL,
@@ -43,13 +33,6 @@ Person.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    /* daily_cal_intake:{
-            type: DataTypes.INTEGER,
-            references:{
-                model:'meals_in_day',
-                key:'id'
-            }
-        }, */
     protien_goal: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -62,14 +45,21 @@ Person.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    creds_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "user_creds",
+        key: "id",
+      },
+    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "person",
+    modelName: "users",
   }
 );
 
-module.exports = Person;
+module.exports = Users;
