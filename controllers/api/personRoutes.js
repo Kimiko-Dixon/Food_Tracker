@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { Person } = require('../../models');
 
+
+//goal settings
 router.put('/:person_id', (req, res) => {
     //Calls the update method on the Person model
     Person.update(
@@ -12,7 +14,7 @@ router.put('/:person_id', (req, res) => {
       },
       {
         where: {
-          id: req.params.person_id,
+          id: req.params.person_id,//req.session.userid
         },
       }
     )
@@ -38,3 +40,23 @@ router.delete('/:person_id', (req, res) => {
       })
       .catch((err) => res.json(err));
   });
+
+  //signup
+  router.get('/signup', async (req, res) => {
+    
+  })
+
+  //login
+  router.get('/login', async (req, res) => {
+    
+  })
+
+  //logout
+  router.get('/logout', async (req, res) => {
+    
+  })
+
+  //account settings change password
+  router.get('/account', async (req, res) => {
+    
+  })

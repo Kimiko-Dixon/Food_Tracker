@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Food } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get('/foods', async (req, res) => {
   try {
 
    // create get for this 3rd-party-API https://developer.edamam.com/edamam-docs-nutrition-api
@@ -26,3 +26,26 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/foodInfo', async (req, res) => {
+  //render the food info page
+})
+
+router.get('/', async (req, res) => {
+  //render the tracking page
+})
+
+router.get('/login', async (req, res) => {
+  //render the login
+})
+
+router.get('/meals', async (req, res) => {
+  //render the meals page
+})
+
+router.get('/', async (req, res) => {
+  //render the questionnare page
+})
+//page to add name for custom meal
+router.get('/createCustomMeal', async (req, res) => {
+    
+})
