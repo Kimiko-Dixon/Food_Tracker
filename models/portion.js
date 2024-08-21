@@ -35,13 +35,13 @@ Portion.init(
             type: DataTypes.DECIMAL,
             allowNull:false
         },
-/*         food_id:{
+        food_id:{
             type: DataTypes.INTEGER,
             references:{
                 model:'food',
                 key: 'id'
             }
-        } */
+        }
         
     },
     {

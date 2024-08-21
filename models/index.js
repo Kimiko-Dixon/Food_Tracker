@@ -1,5 +1,6 @@
-// const Food = require('./food')
-const Person = require('./person')
+const Food = require('./food')
+const Users = require('./users')
+const UserCreds = require('./userCreds')
 const Meal = require('./meal')
 const PortionInMeal = require('./portionInMeal')
 const Portion = require('./portion')
@@ -40,12 +41,20 @@ CustomMeal.belongsTo(Person,{
     foreignKey: 'person_id'
 })
 
-/* Food.hasMany(Portion,{
+Food.hasMany(Portion,{
     foreignKey:'portion_id'
 })
 
 Portion.belongsTo(Food,{
     foreignKey:'portion_id'
-}) */
+})
 
-module.exports = {/*Food,*/Person,Meal,Portion,PortionInMeal,CustomMeal,PortionInCustomMeal}
+UserCreds.hasOne(Users,{
+    foreignKey:'creds_id'
+})
+
+Users.belongsTo(UserCreds,{
+    foreignKey:'creds_id'
+})
+
+module.exports = {Food,Users,UserCreds,Meal,Portion,PortionInMeal,CustomMeal,PortionInCustomMeal}
