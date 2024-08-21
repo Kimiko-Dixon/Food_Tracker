@@ -35,10 +35,10 @@ router.post('/createMeal', async (req, res) => {
 
   })
 
-  //create
+/*   //create
   router.post('/portion', async (req, res) => {
     
-  })
+  }) */
 
   //adding the portion to the meal
   router.post('/portionInMeal', async (req, res) => {
@@ -46,11 +46,11 @@ router.post('/createMeal', async (req, res) => {
   })
 
   //remove portion from meal
-  router.delete('/portionInMeal', async (req, res) => {
+  /* router.delete('/portionInMeal', async (req, res) => {
     
-  })
+  }) */
 
-  //delete portion
+  /* //delete portion
   router.delete('/portion', async (req, res) => {
     
-  })
+  }) */
