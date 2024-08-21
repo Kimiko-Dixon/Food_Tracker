@@ -1,0 +1,67 @@
+.navbar {
+    border-bottom: 1px solid #ddd;
+}
+
+.navbar-item img {
+    border-radius: 5px;
+}
+
+.hero {
+    background: #f0f8ff;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+}
+
+.card {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card-header {
+    border-bottom: 1px solid #ddd;
+    background: #f9f9f9;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.modal-card {
+    border-radius: 8px;
+}
+
+.modal-card-head {
+    background: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+}
+
+.progress {
+    border-radius: 5px;
+    height: 1.5rem;
+}
+
+.button.is-primary, .button.is-success {
+    border-radius: 5px;
+}
+
+.menu-label {
+    font-weight: bold;
+    color: #333;
+}
+
+.has-text-centered {
+    text-align: center;
+}
+
+.block {
+    margin-bottom: 1rem;
+}
+
+.card-footer {
+    border-top: 1px solid #ddd;
+    background: #f9f9f9;
+}
+
+.card-footer-item {
+    color: #4a4a4a;
+}
