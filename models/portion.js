@@ -11,10 +11,6 @@ Portion.init(
             autoIncrement: true,
             primaryKey:true
         },
-        food_name:{
-            type: DataTypes.STRING,
-            allowNull:false,
-        },
         portion:{
             type:DataTypes.INTEGER,
             defaultValue: 1
