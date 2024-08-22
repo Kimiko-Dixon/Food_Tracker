@@ -37,6 +37,7 @@ router.post('/createCustomMeal', async (req, res) => {
     }
 });
 
+
 router.post('/createMeal', async (req, res) => {
   try{
     const meals = await Meal.bulkCreate(
@@ -65,6 +66,16 @@ router.post('/createMeal', async (req, res) => {
   
 })
 
+// router.post('/createMeal', async (req, res) => {
+    
+// })
+
+  //create portion
+ // router.post('/portion', async (req, res) => {
+
+ // })
+
+
 // do /:id for foods,foodinfo, meals pages on homeRoutes
 //create portion
 router.post('/:id/portion', async (req, res) => {
@@ -92,6 +103,7 @@ router.post('/:id/portion', async (req, res) => {
 })
 
   //adding the portion to the meal
+
 router.post('/:id/portionInMeal', async (req, res) => {
   try{
     const mealPortion = PortionInMeal.create({
@@ -116,4 +128,8 @@ router.post('/:id/portionInMeal', async (req, res) => {
   router.delete('/portion', async (req, res) => {
     
   }) */
+
+
+
+    module.exports = router;
 

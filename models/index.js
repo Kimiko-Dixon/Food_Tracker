@@ -25,20 +25,20 @@ Portion.belongsToMany(CustomMeal,{
     foreignKey:'portion_id'
 })
 
-Person.hasMany(Meal,{
-    foreignKey: 'person_id'
+Users.hasMany(Meal,{
+    foreignKey: 'Users_id'
 })
 
-Meal.belongsTo(Person,{
-    foreignKey: 'person_id'
+Meal.hasMany(Users,{
+    foreignKey: 'Users_id'
 })
 
-Person.hasMany(CustomMeal,{
-    foreignKey: 'person_id'
+Users.hasMany(CustomMeal,{
+    foreignKey: 'Users_id'
 })
 
-CustomMeal.belongsTo(Person,{
-    foreignKey: 'person_id'
+CustomMeal.belongsTo(Users,{
+    foreignKey: 'Users_id'
 })
 
 Food.hasMany(Portion,{

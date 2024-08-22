@@ -1,12 +1,17 @@
 const router = require('express').Router();
 const { Food } = require('../models');
-const withAuth = require('../utils/auth');
+
+//import middleware
+const withAuth = require('./api/auth');
 
 router.get('/foods', async (req, res) => {
   try {
 
-   // create get for this 3rd-party-API https://developer.edamam.com/edamam-docs-nutrition-api
+    if (!req.session.loggedIn) {
+      res.redirect('/login);');
+      return
 
+    }
 
     // Get all foods and JOIN with user data
     const foodData = await Food.findAll({
@@ -48,4 +53,6 @@ router.get('/', async (req, res) => {
 //page to add name for custom meal
 router.get('/createCustomMeal', async (req, res) => {
     
-})
+});
+
+module.exports = router;
