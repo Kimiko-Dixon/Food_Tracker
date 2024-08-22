@@ -1,4 +1,4 @@
-// const router = require('express').Router();
+const router = require('express').Router();
 // const customMealRoutes = require('./customMealRoutes');
 // const foodRoutes = require('./foodRoutes');
 // const mealRoutes = require('./mealRoutes');
@@ -11,7 +11,7 @@ const trackingRoute  = require('./tracking')
 // router.use('/customMeal', customMealRoutes);
 // router.use('/food', foodRoutes);
 // router.use('/meal', mealRoutes);
-router.use('/tracking', trackingRoute);
+//router.use('/tracking', trackingRoute);
 router.use('/person', personRoutes);
 // router.use('/portionInCustomMeal', portionInCustomMealRoutes);
 // router.use('/portionInMeal', portionInCustomMealRoutes);

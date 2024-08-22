@@ -26,14 +26,14 @@ router.post('/createCustomMeal', async (req, res) => {
     }
 });
 
-router.post('/createMeal', async (req, res) => {
+// router.post('/createMeal', async (req, res) => {
     
-})
+// })
 
   //create portion
-  router.post('/portion', async (req, res) => {
+ // router.post('/portion', async (req, res) => {
 
-  })
+ // })
 
 /*   //create
   router.post('/portion', async (req, res) => {
@@ -41,9 +41,9 @@ router.post('/createMeal', async (req, res) => {
   }) */
 
   //adding the portion to the meal
-  router.post('/portionInMeal', async (req, res) => {
+  //router.post('/portionInMeal', async (req, res) => {
     
-  })
+  //})
 
   //remove portion from meal
   /* router.delete('/portionInMeal', async (req, res) => {
@@ -54,3 +54,5 @@ router.post('/createMeal', async (req, res) => {
   router.delete('/portion', async (req, res) => {
     
   }) */
+
+    module.exports = router;
