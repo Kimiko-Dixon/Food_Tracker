@@ -5,81 +5,133 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin - Free Bulma template</title>
+    <title>Food Tracker App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <!-- Bulma Version 1-->
     <link rel="stylesheet" href="https://unpkg.com/bulma@1.0.0/css/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="../css/admin.css">
+    <link rel="stylesheet" type="" href="../public/css/homepage.css">
 </head>
 
 <body>
-
-    <!-- START NAV -->
-    <nav class="navbar is-white">
+    <nav class="navbar is-white is-shadowless">
         <div class="container">
             <div class="navbar-brand">
-                <a class="navbar-item brand-text" href="../index.html">
-          DIET TRACKER APP
-        </a>
-                <div class="navbar-burger burger" data-target="navMenu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+                <a class="navbar-item" href="/">
+                    <img src="../public/images/logo.png" alt="Logo" width="112" height="28">
+                </a>
             </div>
             <div id="navMenu" class="navbar-menu">
-                <div class="navbar-start">
-          <a class="navbar-item" href="admin.html">
-            Home
-          </a>
-          <a class="navbar-item" href="admin.html">
-            Profile
-          </a>
-          <a class="navbar-item" href="admin.html">
-            Logout
-          </a>
-          
+                <div class="navbar-end">
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            Profile
+                        </a>
+                        <div class="navbar-dropdown is-right">
+                            <a class="navbar-item" id="account-settings">
+                                Account Settings
+                            </a>
+                            <a class="navbar-item" id="goal-settings">
+                                Goal Settings
+                            </a>
+                            <a class="navbar-item" id="logout">
+                                Logout
+                            </a>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
     </nav>
-    <!-- END NAV -->
+
+    <!-- Account Settings Modal -->
+    <div id="account-settings-modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+
+            <header class="modal-card-head">
+                <p class="modal-card-title">Change Password</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="field">
+                    <label class="label">New Password</label>
+                    <div class="control">
+                        <input id="new-password" class="input" type="password" placeholder="Enter new password">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Verify Password</label>
+                    <div class="control">
+                        <input id="verify-password" class="input" type="password" placeholder="Verify new password">
+                    </div>
+                </div>
+            </section>
+            <footer class="modal-card-foot">
+                <button id="change-password-btn" class="button is-success">Change Password</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Goal Settings Modal -->
+    <div id="goal-settings-modal" class="modal ">
+        <div class="modal-background"></div>
+        <div class="modal-card ">
+            <header class="modal-card-head ">
+                <p class="modal-card-title">Goal Settings</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="field">
+                    <label class="label">Current Weight</label>
+                    <div class="control">
+                        <input id="current-weight" class="input" type="number" placeholder="Enter current weight">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Weight Goal</label>
+                    <div class="control">
+                        <input id="weight-goal" class="input" type="number" placeholder="Enter weight goal">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Calorie Goal</label>
+                    <div class="control">
+                        <input id="calorie-goal" class="input" type="number" placeholder="Enter calorie goal">
+                    </div>
+                </div>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-success">Save Changes</button>
+            </footer>
+        </div>
+    </div>
+
     <div class="container">
         <div class="columns">
-            <div class="column is-3 mt-5 ">
+            <div class="column is-3 mt-5">
                 <aside class="menu is-hidden-mobile">
-                    <p class="menu-label">
-                        Choose your meal
-                    </p>
+                    <p class="menu-label">Choose your meal</p>
                     <ul class="menu-list">
-                        <li><a class="is-active">Breakfast</a></li>
-                        <li><a>Lunch</a></li>
-                        <li><a>Dinner</a></li>
+                        <li><a class="{{#if isBreakfastActive}}is-active{{/if}}">Breakfast</a></li>
+                        <li><a class="{{#if isLunchActive}}is-active{{/if}}">Lunch</a></li>
+                        <li><a class="{{#if isDinnerActive}}is-active{{/if}}">Dinner</a></li>
                     </ul>
-                    <p class="menu-label">
-                        Food Tracker
-                    </p>
+                    <p class="menu-label">Food Tracker</p>
                     <ul class="menu-list">
                         <li><a>Food search</a></li>
                         <li><a>Progress Bar</a></li>
                         <li><a>Your Meals</a></li>
                     </ul>
-    
-                   
                 </aside>
             </div>
-            <div class="column is-9">
+            <div class="column is-9.5">
                 <section class="hero is-info welcome is-small">
                     <div class="hero-body">
                         <div class="container">
-                            <h1 class="title">
-                                Hello, @Client.
-                            </h1>
-                            <h2 class="subtitle">
-                                I hope you are having a great day!
-                            </h2>
+                            <h1 class="title">Hello, {{username}}.</h1>
+                            <h2 class="subtitle">I hope you are having a great day!</h2>
                         </div>
                     </div>
                 </section>
@@ -88,169 +140,158 @@
                         <div class="tile is-parent">
                             <article class="tile is-child box">
                                 <p class="title">Calories Goal</p>
-                                <p class="subtitle">2.000 cal</p>
+                                <p class="subtitle" id="calorieGoal">{{calorieGoal}} cal</p>
                             </article>
                         </div>
                         <div class="tile is-parent">
                             <article class="tile is-child box">
-                                <p class="title">Calories today</p>
-                                <p class="subtitle">1.700 cal</p>
+                                <p class="title">Calories Today</p>
+                                <p class="subtitle" id="caloriesToday">{{caloriesToday}} cal</p>
                             </article>
                         </div>
                         <div class="tile is-parent">
                             <article class="tile is-child box">
-                                <p class="title">Calories Left today</p>
-                                <p class="subtitle">300 cal</p>
+                                <p class="title">Calories Left Today</p>
+                                <p class="subtitle" id="caloriesLeft">{{caloriesLeft}} cal</p>
                             </article>
                         </div>
                     </div>
                 </section>
-                <div class="columns mt-6">
-                    <div class="column is-6">
-                        <h1 class="title">
-                            Food Tracker
-                        </h1>
-                        <div class="card events-card">
+                <div class="columns">
+                    <div class="column is-6 mt-6">
+                        <h1 class="title">Food Tracker</h1>
+                        <div class="card">
                             <header class="card-header">
-                                <p class="card-header-title">
-                                    Foods
-                                </p>
+                                <p class="card-header-title">Your Foods</p>
                                 <a href="#" class="card-header-icon" aria-label="more options">
-                  <span class="icon">
-                    <i class="fa fa-angle-down" aria-hidden="true"></i>
-                  </span>
-                </a>
+                                    <span class="icon">
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                </a>
                             </header>
                             <div class="card-table">
                                 <div class="content">
                                     <table class="table is-fullwidth is-striped">
                                         <tbody>
+                                            {{#each foods}}
                                             <tr>
                                                 <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                                <td>Tomato</td>
+                                                <td>{{this.name}}</td>
                                                 <td class="level-right"><a class="button is-small is-primary" href="#">Add</a></td>
                                             </tr>
-                                            <tr>
-                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                                <td>Banana</td>
-                                                <td class="level-right"><a class="button is-small is-primary" href="#">Add</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                                <td>Yogurt</td>
-                                                <td class="level-right"><a class="button is-small is-primary" href="#">Add</a></td>
-                                            </tr>
-                                            
+                                            {{/each}}
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                             <footer class="card-footer">
                                 <a href="#" class="card-footer-item">Save as a Meal</a>
-                            </footer>
-                            <footer class="card-footer">
                                 <a href="#" class="card-footer-item">Delete</a>
                             </footer>
                         </div>
                     </div>
-                    <div class="column is-6 mt-6">
+                    <div class="column is-6 mt-6 ml-3">
+                        <h1 class="title">Search Bar</h1>
                         <div class="card">
                             <header class="card-header">
-                                <p class="card-header-title">
-                                    Food Search
-                                </p>
+                                <p class="card-header-title">Food Search</p>
                                 <a href="#" class="card-header-icon" aria-label="more options">
-                  <span class="icon">
-                    <i class="fa fa-angle-down" aria-hidden="true"></i>
-                  </span>
-                </a>
+                                    <span class="icon">
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                </a>
                             </header>
                             <div class="card-content">
-                                <div class="content">
-                                    <div class="control has-icons-left has-icons-right">
-                                        <input class="input is-large" type="text" placeholder="">
-                                        <span class="icon is-medium is-left">
-                      <i class="fa fa-search"></i>
-                    </span>
-                                        <span class="icon is-medium is-right">
-                      <i class="fa fa-check"></i>
-                    </span>
-                                    </div>
+                                <div class="control has-icons-left has-icons-right">
+                                    <input class="input is-large" type="text" placeholder="Search for food...">
+                                    <span class="icon is-medium is-left">
+                                        <i class="fa fa-search"></i>
+                                    </span>
+                                    <span class="icon is-medium is-right">
+                                        <i class="fa fa-check"></i>
+                                    </span>
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
                 <div class="columns mt-6">
-                    <div class="column is-6">
-                        <h1 class="title">
-                            Your Meals
-                        </h1>
+                    <div class="column is-12">
                         <div class="card events-card">
                             <header class="card-header">
-                                <p class="card-header-title">
-                                    Meals
-                                </p>
+                                <p class="card-header-title">Your Meals</p>
                                 <a href="#" class="card-header-icon" aria-label="more options">
-                  <span class="icon">
-                    <i class="fa fa-angle-down" aria-hidden="true"></i>
-                  </span>
-                </a>
+                                    <span class="icon">
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                </a>
+                            </header>
+                            <div class="card-table">
+                                <div class="content">
+                                    <table class="table is-fullwidth is-striped">
+                                        <tbody>
+                                            {{#each meals}}
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                <td>{{this.name}}</td>
+                                                <td class="level-right"><a class="button is-small is-primary" href="#">Add</a></td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">Save as a Meal</a>
+                                <a href="#" class="card-footer-item">Delete</a>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column is-6 mt-6">
+                        <h1 class="title">Progress</h1>
+                        <div class="card">
+                            <header class="card-header">
+                                <p class="card-header-title">Progress Bar</p>
+                                <a href="#" class="card-header-icon" aria-label="more options">
+                                    <span class="icon">
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                </a>
                             </header>
                             <div class="card-table">
                                 <div class="content">
                                     <table class="table is-fullwidth is-striped">
                                         <tbody>
                                             <tr>
-                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                                <td>Meal #1</td>
-                                                <td class="level-right"><a class="button is-small is-primary" href="#">Delete</a></td>
+                                                <td>Calories Consumed Today:</td>
+                                                <td>{{progressToday}}%</td>
                                             </tr>
                                             <tr>
-                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                                <td>Meal #2</td>
-                                                <td class="level-right"><a class="button is-small is-primary" href="#">Delete</a></td>
+                                                <td>Weight Loss:</td>
+                                                <td>{{weightLoss}} lbs</td>
                                             </tr>
-                                           
-                                            
+                                            <tr>
+                                                <td>Weight Goal:</td>
+                                                <td>{{weightGoal}} lbs</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                           
-                            
                             <footer class="card-footer">
-                                <a href="#" class="card-footer-item">Delete All</a>
+                                <a href="#" class="card-footer-item">Save Progress</a>
+                                <a href="#" class="card-footer-item">Reset</a>
                             </footer>
                         </div>
-                        
-                    </div>
-                    <div class="column is-6 mt-6 card events-card">
-                        <div class="container">
-                            <!-- Progress Bar -->
-                            <div class="block">
-                                <label for="progress-bar" class="label">Protein</label>
-                                <progress id="progress-bar" class="progress is-primary" value="70" max="100">70%</progress>
-                            </div>
-                            <div class="block">
-                                <label for="progress-bar" class="label">Fat</label>
-                                <progress id="progress-bar" class="progress is-primary" value="80" max="100">50%</progress>
-                            </div>
-                            <div class="block">
-                                <label for="progress-bar" class="label">Carbs</label>
-                                <progress id="progress-bar" class="progress is-primary" value="30" max="100">50%</progress>
-                            </div>
-                        </div>
-                        </div>
-                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="public/js/homepage.js"></script>
-    <script async type="text/javascript" src="../js/bulma.js"></script>
+      <script async type="text/javascript" src="../js/bulma.js"></script>
+      <script src="..\public\js\homepage.js"></script>
 </body>
 
 </html>
