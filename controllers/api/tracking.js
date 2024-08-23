@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Meal,Portion,Food,PortionInMeal,PortionInCustomMeal,CustomMeal } = require('../../models');
 
-router.post('/portionInCustomMeal', async (req, res) => {
+/* router.post('/portionInCustomMeal', async (req, res) => {
     try {
       const allPortions = req.body.selectedIds.map(id => {
         
@@ -17,7 +17,7 @@ router.post('/portionInCustomMeal', async (req, res) => {
       })
       /* const portionInCustomMeal = await PortionInCustomMeal.create({
         ...req.body,
-      }); */
+      });
       res.status(200).json(portionInCustomMeal);
     } catch (err) {
       res.status(400).json(err);
@@ -35,30 +35,27 @@ router.post('/createCustomMeal', async (req, res) => {
     } catch (err) {
       res.status(400).json(err);
     }
-});
+}); */
 
 
 router.post('/createMeal', async (req, res) => {
   try{
     const meals = await Meal.bulkCreate(
       {
-        date:req.body.date,
         meal_time:'Breakfast',
         person_id:req.session.id
       },
       {
-        date:req.body.date,
         meal_time:'Lunch',
         person_id:req.session.id
       },
       {
-        date:req.body.date,
         meal_time:'Dinner',
         person_id:req.session.id
       }
     )
 
-    res.render('homepage',meals)
+    // res.render('homepage',meals)
   } 
   catch{
     res.status(500).json('failed to create meals')
@@ -119,17 +116,8 @@ router.post('/:id/portionInMeal', async (req, res) => {
     
 })
 
-  //remove portion from meal
-  /* router.delete('/portionInMeal', async (req, res) => {
-    
-  }) */
-
-  /* //delete portion
-  router.delete('/portion', async (req, res) => {
-    
-  }) */
 
 
 
-    module.exports = router;
+module.exports = router;
 
