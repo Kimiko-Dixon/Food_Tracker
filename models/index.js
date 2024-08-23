@@ -1,34 +1,60 @@
-const Day = require('./day')
 const Food = require('./food')
-const Person = require('./person')
+const Users = require('./users')
+const UserCreds = require('./userCreds')
 const Meal = require('./meal')
-const FoodInMeal = require('./foodInMeal')
-const MealsInDay = require('./mealsInDay')
+const PortionInMeal = require('./portionInMeal')
+const Portion = require('./portion')
+const CustomMeal = require('./customMeal')
+const PortionInCustomMeal = require('./portionInCustomMeal')
 
-Meal.belongsToMany(Food,{
-    through:FoodInMeal,
+Meal.belongsToMany(Portion,{
+    through:PortionInMeal,
     foreignKey:'meal_id'
 })
-Food.belongsToMany(Meal,{
-    through:FoodInMeal,
-    foreignKey:'food_id'
+Portion.belongsToMany(Meal,{
+    through:PortionInMeal,
+    foreignKey:'portion_id'
 })
 
-Meal.belongsToMany(Day,{
-    through:MealsInDay,
-    foreignKey:'meal_id'
+CustomMeal.belongsToMany(Portion,{
+    through:PortionInCustomMeal,
+    foreignKey:'custom_meal_id'
 })
-Day.belongsToMany(Meal,{
-    through:MealsInDay,
-    foreignKey:'day_id'
-})
-
-Person.belongsToMany(MealsInDay,{
-    foreignKey: 'daily_cal_intake'
+Portion.belongsToMany(CustomMeal,{
+    through:PortionInCustomMeal,
+    foreignKey:'portion_id'
 })
 
-MealsInDay.hasOne(Person,{
-    foreignKey: 'daily_cal_intake'
+Person.hasMany(Meal,{
+    foreignKey: 'person_id'
 })
 
-module.exports = {Day,Food,Person,Meal,MealsInDay,FoodInMeal}
+Meal.belongsTo(Person,{
+    foreignKey: 'person_id'
+})
+
+Person.hasMany(CustomMeal,{
+    foreignKey: 'person_id'
+})
+
+CustomMeal.belongsTo(Person,{
+    foreignKey: 'person_id'
+})
+
+Food.hasMany(Portion,{
+    foreignKey:'portion_id'
+})
+
+Portion.belongsTo(Food,{
+    foreignKey:'portion_id'
+})
+
+UserCreds.hasOne(Users,{
+    foreignKey:'creds_id'
+})
+
+Users.belongsTo(UserCreds,{
+    foreignKey:'creds_id'
+})
+
+module.exports = {Food,Users,UserCreds,Meal,Portion,PortionInMeal,CustomMeal,PortionInCustomMeal}
