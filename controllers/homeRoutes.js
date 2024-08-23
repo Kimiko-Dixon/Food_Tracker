@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Food } = require('../models');
 
 //import middleware
-const withAuth = require('./api/auth');
+const withAuth = require('../utils/auth');
 
 router.get('/foods', async (req, res) => {
   try {
@@ -36,7 +36,8 @@ router.get('/foodInfo', async (req, res) => {
 })
 
 router.get('/', async (req, res) => {
-  //render the tracking page
+  res.render('homepage')
+    // const tracking = await 
 })
 
 router.get('/login', async (req, res) => {
