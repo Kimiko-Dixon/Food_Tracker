@@ -36,7 +36,7 @@ router.get('/foodInfo', async (req, res) => {
 })
 
 router.get('/', async (req, res) => {
-  //render the tracking page
+  res.render('homepage');
 })
 
 router.get('/login', async (req, res) => {
