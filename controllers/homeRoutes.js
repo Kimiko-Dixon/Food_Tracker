@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Food } = require('../models');
 
 //import middleware
-const withAuth = require('./api/auth');
+const withAuth = require('../utils/auth');
 
 router.get('/foods', async (req, res) => {
   try {
@@ -31,6 +31,10 @@ router.get('/foods', async (req, res) => {
   }
 });
 
+router.get('/questionnare', async (req, res) => {
+  res.render('questionnare')
+})
+
 router.get('/foodInfo', async (req, res) => {
   //render the food info page
 })
@@ -40,7 +44,7 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/login', async (req, res) => {
-  //render the login
+  res.render('login')
 })
 
 router.get('/meals', async (req, res) => {
