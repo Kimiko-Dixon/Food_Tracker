@@ -1,14 +1,12 @@
 const router = require('express').Router();
-const withAuth = ('./auth');
+//import middleware
+const withAuth = require('../utils/auth');
 
 const apiRoutes = require('./api');
 const homeRoutes = require('./homeRoutes');
 
-router.use('/', homeRoutes);
-router.use('/api', apiRoutes);
-
 // Login route
-router.get('login', (req, res) => {
+router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
       res.redirect('/');
       return;
@@ -16,6 +14,11 @@ router.get('login', (req, res) => {
   //otherwise, render the 'login' template
     res.render('login');
   });
+  
+router.use('/', /* withAuth, */homeRoutes);
+router.use('/api', apiRoutes);
+
+
   
 module.exports = router;
 

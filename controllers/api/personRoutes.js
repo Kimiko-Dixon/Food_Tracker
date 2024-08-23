@@ -1,6 +1,5 @@
-const router = require('express').Router();
-const { UserCreds,Users } = require('../../models');
-
+const router = require("express").Router();
+const { UserCreds, Users } = require("../../models");
 
 //goal settings
 // router.put('/:Users_id', (req, res) => {
@@ -27,7 +26,7 @@ const { UserCreds,Users } = require('../../models');
 //       });
 //   });
 
-  // Delete route for a Users with a matching id
+// Delete route for a Users with a matching id
 // router.delete('/:Users_id', (req, res) => {
 //     // Looks for the books based book_id given in the request parameters
 //     Users.destroy({
@@ -41,43 +40,37 @@ const { UserCreds,Users } = require('../../models');
 //       .catch((err) => res.json(err));
 //   });
 
-  //signup
-  router.post('/signup', async (req, res) => {
-    try{
-      const signup = await UserCreds.create({
-        username: req.body.signUsername,
-        password: req.body.signPassword
-      })
-      req.session.save(() => {
-        req.session.LoggedIn = true
-        req.session.userInfo = {
-          id:signup.id,
-          username:signup.username
-        }
-      })
-      res.status(200).json(signup)
-      // res.render('questionnare')  
-    }
-    catch{
-      res.status(500).json('error creating account')
-    }
-    
-    
-  })
+//signup
+router.post("/signup", async (req, res) => {
+  try {
+    const signup = await UserCreds.create({
+      username: req.body.signUsername,
+      password: req.body.signPassword,
+    });
+    req.session.save(() => {
+      req.session.loggedIn = true;
+      req.session.userInfo = {
+        id: signup.id,
+        username: signup.username,
+      };
+    });
+    res.status(200).json(signup);
+    // res.render('questionnaire  ')
+  } catch {
+    res.status(500).json("error creating account");
+  }
+});
 
-  //login
-  router.post('/login', async (req, res) => {
-    
-  })
+//login
+router.post("/login", async (req, res) => {});
 
-  //logout
-  // router.post('/logout', async (req, res) => {
-    
-  // })
+//logout
+// router.post('/logout', async (req, res) => {
 
-  router.post('/calories', async (req, res) => {
-    const userStats = await Users.create()
-  })
+// })
 
+router.post("/calories", async (req, res) => {
+  const userStats = await Users.create();
+});
 
-  module.exports = router;
+module.exports = router;

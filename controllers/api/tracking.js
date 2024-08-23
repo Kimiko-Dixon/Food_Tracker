@@ -43,19 +43,19 @@ router.post('/createMeal', async (req, res) => {
     const meals = await Meal.bulkCreate(
       {
         meal_time:'Breakfast',
-        person_id:req.session.id
+        person_id:req.session.userInfo.id
       },
       {
         meal_time:'Lunch',
-        person_id:req.session.id
+        person_id:req.session.userInfo.id
       },
       {
         meal_time:'Dinner',
-        person_id:req.session.id
+        person_id:req.session.userInfo.id
       }
     )
 
-    // res.render('homepage',meals)
+    res.status(500).json(meals)
   } 
   catch{
     res.status(500).json('failed to create meals')
@@ -115,9 +115,6 @@ router.post('/:id/portionInMeal', async (req, res) => {
   }
     
 })
-
-
-
 
 module.exports = router;
 

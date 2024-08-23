@@ -4,28 +4,28 @@
         <div class="column is-8 is-offset-2 register">
           <div class="columns">             
             <div class="column right has-text-centered">
-              <h1 class="title is-4">Questionnarie</h1>
+              <h1 class="title is-4">Questionnaire  </h1>
               <p class="description">Please take a moment to introduce yourself by providing your information. </p>
               <form>
 
                 <div class="field">
                   <label class="label">Height (in meters)</label>
                   <div class="control">
-                    <input class="input is-medium" type="number" placeholder="Enter your height">
+                    <input class="input is-medium" type="number" placeholder="Enter your height" id="height">
                   </div>
                 </div>
         
                 <div class="field">
                   <label class="label">Weight (in kg)</label>
                   <div class="control">
-                    <input class="input is-medium" type="number" placeholder="Enter your weight">
+                    <input class="input is-medium" type="number" placeholder="Enter your weight" id="weight">
                   </div>
                 </div>
         
                 <div class="field">
                   <label class="label">Age</label>
                   <div class="control">
-                    <input class="input is-medium" type="number" placeholder="Enter your age">
+                    <input class="input is-medium" type="number" placeholder="Enter your age" id="age">
                   </div>
                 </div>
         
@@ -33,7 +33,7 @@
                   <label class="label">Gender</label>
                   <div class="control">
                     <div class="select is-medium">
-                      <select>
+                      <select id="gender">
                         <option value="" disabled selected>Select your gender</option>
                         <option>Male</option>
                         <option>Female</option>
@@ -46,7 +46,7 @@
                     <label class="label">Exercise Type</label>
                     <div class="control">
                       <div class="select is-medium">
-                        <select>
+                        <select id="exerciseIntensity">
                           <option value="" disabled selected>Select your exercise</option>
                           <option>No</option>
                           <option>Light</option>
@@ -60,7 +60,7 @@
         
                 <div class="field">
                   <div class="control">
-                    <button class="button is-primary is-medium">Submit</button>
+                    <button class="button is-primary is-medium" id="submitquestionnaire  ">Submit</button>
                   </div>
                 </div>
         
@@ -95,5 +95,5 @@
         </div>
       </div>
     </section>
-    <script src="..\public\js\questionnarie.js"></script>
+    <script src="\js\questionnaire.js"></script>
 </body>
