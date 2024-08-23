@@ -48,6 +48,7 @@ const { UserCreds,Users } = require('../../models');
         username: req.body.signUsername,
         password: req.body.signPassword
       })
+      console.log(signup)
       req.session.save(() => {
         req.session.LoggedIn = true
         req.session.userInfo = {

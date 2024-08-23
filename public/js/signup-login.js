@@ -10,8 +10,8 @@ const signup = async (event) => {
             headers: {'Content-Type': 'application/json'}
         })
         if(response.status === 200){
-        document.location.replace('/questionnare')
-        // document.location.replace('/')
+        // document.location.replace('/questionnare')
+        document.location.replace('/')
         }
         else{
             alert(response.statusText)
