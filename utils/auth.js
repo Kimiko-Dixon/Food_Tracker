@@ -1,5 +1,4 @@
 // Middleware/JS for login
-const router = require('express').Router();
 
 const withAuth = (req, res, next) => {
     if (!req.session.loggedIn){
