@@ -1,0 +1,53 @@
+ <section class="container">
+        <div class="columns is-multiline">
+            <div class="column is-offset-1 register">
+                <div class="column is-12 mb-4">
+                    <a href="homepage.html" class="button is-link">Back to Homepage</a>
+                </div>
+                
+                <div class="columns">
+                    <div class="card is-6">
+                        <header class="card-header">
+                            <p class="card-header-title">Food Search</p>
+                        </header>
+                        <div class="card-content">
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="food-search" class="input is-medium" type="text" placeholder="Search for food...">
+                                <span class="icon is-medium is-left">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                            </div>
+                            <div id="food-results" class="mt-2">
+                                <!-- Dynamic food options will be appended here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column right">
+                        <div class="card">
+                            <header class="card-header">
+                                <p class="card-header-title">Selected Foods</p>
+                            </header>
+                            <div class="card-content">
+                                <table class="table is-fullwidth is-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Food</th>
+                                            <th>Protein (g)</th>
+                                            <th>Fat (g)</th>
+                                            <th>Carbs (g)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="selected-foods">
+                                        <!-- Selected foods with nutritional info will be added here -->
+                                    </tbody>
+                                </table>
+                                <button id="submit-foods" class="button is-primary is-fullwidth is-medium">Submit Foods</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="../public/js/foodPage.js"></script>

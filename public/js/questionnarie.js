@@ -9,7 +9,10 @@ const port = 3001;
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use((req, res) => {
+  res.status(404).render("404page", {title:"404 not found",
+  customstyle: `<link rel="stylesheet" href="/css/questionnarie.css">`});
+});
 // Initialize Sequelize for PostgreSQL
 const sequelize = new Sequelize('postgres://username:password@localhost:3001/questionnaire_db');
 
