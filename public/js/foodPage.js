@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const mealType = urlParams.get('meal') || 'breakfast';
 
+    app.use((req, res) => {
+        res.status(404).render("404page", {title:"404 not found",
+        customstyle: `<link rel="stylesheet" href="/css/foodPage.css">`});
+      });
+
     // Sample data for demonstration
     const foodData = [
         { name: 'Apple', protein: 0.5, fat: 0.2, carbs: 14 },

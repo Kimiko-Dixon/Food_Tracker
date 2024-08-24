@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const accountSettingsModal = document.getElementById('account-settings-modal');
     const goalSettingsModal = document.getElementById('goal-settings-modal');
 
+    app.use((req, res) => {
+        res.status(404).render("404page", {title:"404 not found",
+        customstyle: `<link rel="stylesheet" href="/css/homepage.css">`});
+      });
+
     accountSettingsBtn.addEventListener('click', () => {
         accountSettingsModal.classList.add('is-active');
     });
