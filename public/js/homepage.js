@@ -39,7 +39,7 @@
     });
 
 
-    document.addEventListener('DOMContentLoaded', () => {
+   /*  document.addEventListener('DOMContentLoaded', () => {
         // Fetch and display calorie goal
         fetch('/api/goals')
             .then(response => response.json())
@@ -91,4 +91,4 @@
                 document.querySelector('progress[value="80"]').value = data.fatProgress;
                 document.querySelector('progress[value="30"]').value = data.carbsProgress;
             });
-    });
+    }); */

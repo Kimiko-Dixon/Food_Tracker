@@ -12,7 +12,12 @@ const PORT = process.env.PORT || 3001;
 
 const sess = {
   secret: "testing",
-  cookies: {},
+  cookies: {
+    maxAge: 60 * 60 * 1000,
+    httpOnly: true,
+    secure: false,
+    sameSite: 'lax',
+  },
   resave: false,
   saveUninitialized: true,
   storage: new Store({

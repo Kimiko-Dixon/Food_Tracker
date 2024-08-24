@@ -53,8 +53,9 @@ router.post("/signup", async (req, res) => {
         id: signup.id,
         username: signup.username,
       };
+      res.status(200).json(signup);
     });
-    res.status(200).json(signup);
+    
     // res.render('questionnaire  ')
   } catch {
     res.status(500).json("error creating account");
@@ -62,7 +63,36 @@ router.post("/signup", async (req, res) => {
 });
 
 //login
-router.post("/login", async (req, res) => {});
+router.post("/login", async (req, res) => {
+  try{
+    const user = await UserCreds.findOne({
+      where:{
+        username:req.body.loginUsername
+      }
+    })
+    if(!user){
+      res.status(400).json('Your username or password are incorrect')
+      return
+    }
+    const verifyPassword = await user.isPassword(req.body.loginPassword)
+    if(!verifyPassword){
+      res.status(400).json('Your username or password are incorrect')
+      return
+    }
+    req.session.save(() => {
+      req.session.loggedIn = true;
+      req.session.userInfo = {
+        id: user.id,
+        username: user.username,
+      };
+      res.status(200).json(user);
+    });
+  }catch{
+    res.status(500).json("error logging in")
+  }
+  
+
+});
 
 //logout
 // router.post('/logout', async (req, res) => {

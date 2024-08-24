@@ -12,7 +12,7 @@ Users.init(
       primaryKey: true,
     },
     height: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
     },
     weight: {
       type: DataTypes.INTEGER,
@@ -20,15 +20,15 @@ Users.init(
     age: {
       type: DataTypes.INTEGER,
     },
-    is_woman: {
-      type: DataTypes.BOOLEAN,
+    gender: {
+      type: DataTypes.STRING,
     },
     exercise_intensity: {
       type: DataTypes.STRING,
     },
-    weight_goal: {
+    /* weight_goal: {
       type: DataTypes.INTEGER,
-    },
+    }, */
     calorie_goal: {
       type: DataTypes.INTEGER,
       allowNull: false,

@@ -10,7 +10,7 @@ const signup = async (event) => {
       headers: { "Content-Type": "application/json" },
     });
     if (response.status === 200) {
-      document.location.replace("/questionnaire");
+      window.location.replace("/questionnaire");
       // document.location.replace('/')
     } else {
       alert(response.statusText);

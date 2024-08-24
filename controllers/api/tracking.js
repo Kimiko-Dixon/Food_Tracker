@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { Meal,Portion,Food,PortionInMeal,PortionInCustomMeal,CustomMeal } = require('../../models');
+const fitnessCalculator = require('fitness-calculator')
+const { Meal,Portion,Food,PortionInMeal,PortionInCustomMeal,CustomMeal,Users} = require('../../models');
 
 /* router.post('/portionInCustomMeal', async (req, res) => {
     try {
@@ -38,30 +39,42 @@ router.post('/createCustomMeal', async (req, res) => {
 }); */
 
 
-router.post('/createMeal', async (req, res) => {
+/* router.post('/createMeal', async (req, res) => {
   try{
-    const meals = await Meal.bulkCreate(
-      {
-        meal_time:'Breakfast',
-        person_id:req.session.userInfo.id
-      },
-      {
-        meal_time:'Lunch',
-        person_id:req.session.userInfo.id
-      },
-      {
-        meal_time:'Dinner',
-        person_id:req.session.userInfo.id
+    const isMeals = await Meal.findAll({
+      where:{
+        userCred_id:req.session.userInfo.id,
+        date:today
       }
-    )
+    })
 
-    res.status(500).json(meals)
+    if(!isMeals){
+      const meals = await Meal.bulkCreate(
+        {
+          meal_time:'Breakfast',
+          userCred_id:req.session.userInfo.id
+        },
+        {
+          meal_time:'Lunch',
+          userCred_id:req.session.userInfo.id
+        },
+        {
+          meal_time:'Dinner',
+          userCred_id:req.session.userInfo.id
+        }
+      )
+      res.status(200).json(meals)
+      return
+    }
+
+    res.status(200).json(isMeals)
+    
   } 
   catch{
     res.status(500).json('failed to create meals')
   } 
   
-})
+}) */
 
 // router.post('/createMeal', async (req, res) => {
     
@@ -105,7 +118,7 @@ router.post('/:id/portionInMeal', async (req, res) => {
   try{
     const mealPortion = PortionInMeal.create({
       portion_id:req.params.id/* req.session.meal_id */,
-      meal_id:req.session.portion_id
+      meal_id:/* req.session.portion_id */'?'
     })
 
     res.status(200).json(mealPortion)
@@ -114,6 +127,43 @@ router.post('/:id/portionInMeal', async (req, res) => {
     res.status(500).json('failed to add portion to meal')
   }
     
+})
+
+router.post('/questionnaire', async (req, res) => {
+  try{
+    /* const bmrstats = {
+      weight: req.body.weight,
+      height: req.body.height,
+      age: req.body.age,
+      woman: req.body.isWoman,
+    };
+    const bmr = nutrition.bmr(bmrstats)
+    const calorieGoal = nutrition.dailyCalories({
+      bmr: bmr,
+      exerciseType: req.body.exerciseIntensity,
+    }); */
+    /* const calorieResults = fitnessCalculator.calorieNeeds(req.body.gender,req.body.age,req.body.height,req.body.weight,req.body.exerciseIntensity)
+    const calorieGoal = calorieResults.balance */
+  
+    const userStats = await Users.create({
+      weight: req.body.weight,
+      height: req.body.height,
+      age: req.body.age,
+      gender: req.body.gender,
+      exercise_intensity:req.body.exerciseIntensity,
+      calorie_goal:req.body.calorieGoal,
+      protien_goal:req.body.protienGoal,
+      carb_goal: req.body.carbGoal,
+      fat_goal:req.body.fatGoal,
+      creds_id:req.session.userInfo.id
+    })
+
+    res.status(200).json(userStats)
+  }
+  catch{
+    res.status(500).json('failed to create Users')
+  }
+  
 })
 
 module.exports = router;

@@ -1,12 +1,23 @@
 const router = require("express").Router();
-const { Food } = require("../models");
+const { Food,Portion,Meal, Users, UserCreds } = require("../models");
+const withAuth = require('../utils/auth.js');
 
-router.get("/foods", async (req, res) => {
+// Login route
+router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+//otherwise, render the 'login' template
+  res.render('login');
+});
+
+router.get("/foods",withAuth, async (req, res) => {
   try {
-    if (!req.session.loggedIn) {
-      res.redirect("/login);");
-      return;
-    }
+    // if (!req.session.loggedIn) {
+    //   res.redirect("/login);");
+    //   return;
+    // }
 
     // Get all foods and JOIN with user data
     const foodData = await Food.findAll({});
@@ -24,12 +35,71 @@ router.get("/foods", async (req, res) => {
   }
 });
 
-router.get("/questionnaire", async (req, res) => {
+router.get("/questionnaire", withAuth,async (req, res) => {
   res.render("questionnaire");
 });
 
-router.get("/", async (req, res) => {
-  res.render("homepage");
+router.get("/",withAuth, async (req, res) => {
+  const date = new Date().toJSON().slice(0,10)
+  const loggedPortions = await Meal.findAll({
+    include:[{model:Portion}],
+    where:{
+      userCred_id:req.session.userInfo.id,
+      date:date
+    }
+  })
+  let meals;
+  if(!loggedPortions){
+    meals = await Meal.bulkCreate(
+      {
+        meal_time:'Breakfast',
+        userCred_id:req.session.userInfo.id
+      },
+      {
+        meal_time:'Lunch',
+        userCred_id:req.session.userInfo.id
+      },
+      {
+        meal_time:'Dinner',
+        userCred_id:req.session.userInfo.id
+      }
+    )
+  }
+  else{
+    meals = loggedPortions.map(p => p.get({plain:true}))
+  }
+  const foodStats = await Users.findOne({
+    where:{
+      creds_id:req.session.userInfo.id
+    },
+    include:[{model:UserCreds}]
+  })
+  const calsAndMacs = foodStats.get({plain:true})
+  console.log(calsAndMacs)
+  const calsTracked = 0
+  const proteinTracked = 0
+  const carbsTracked = 0
+  const fatTracked = 0
+  meals.forEach(meal=>{
+    meal.forEach(portion => {
+      calsTracked += portion.calories
+      proteinTracked += portion.protein
+      carbsTracked += portion.carbs
+      fatTracked += portion.fat
+    })
+  })
+  const calsLeft = calsAndMacs.calorie_goal - calsTracked
+
+  res.render("homepage",{
+    meals:meals,
+    username: calsAndMacs.user_cred.username,
+    calorieGoal:calsAndMacs.calorie_goal,
+    calsTracked:calsTracked,
+    calsLeft:calsLeft,
+    proteinTracked:proteinTracked,
+    carbsTracked:carbsTracked,
+    fatTracked:fatTracked
+  });
 });
 
 // router.get('/login', async (req, res) => {
