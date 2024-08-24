@@ -8,12 +8,7 @@ const portionInCustomMeal = require("./portionInCustomMeal");
 
 const seed = async () => {
   await sequelize.sync({ force: true });
-  await peopleSeeds();
   await portionSeeds();
-  await mealSeeds();
-  await portionInMealSeeds();
-  await customMealSeeds();
-  await portionInCustomMeal();
   process.exit(0);
 };
 

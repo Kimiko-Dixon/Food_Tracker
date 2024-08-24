@@ -13,7 +13,7 @@ Meal.init(
         },
         date:{
             type: DataTypes.DATEONLY,
-            allowNull:false
+            defaultValue:DataTypes.NOW
         },
         meal_time:{
             type: DataTypes.STRING,
