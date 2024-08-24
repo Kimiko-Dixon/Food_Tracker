@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register - Free Bulma template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/15181efa86.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/bulma@1.0.2/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/register.css">
+</head>
+
+<body>
+    <section class="container">
+        <div class="columns is-multiline">
+            <div class="column is-offset-1 register">
+                <div class="column is-12 mb-4">
+                    <a href="homepage.html" class="button is-link">Back to Homepage</a>
+                </div>
+                
+                <div class="columns">
+                    <div class="card is-6">
+                        <header class="card-header">
+                            <p class="card-header-title">Food Search</p>
+                        </header>
+                        <div class="card-content">
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="food-search" class="input is-medium" type="text" placeholder="Search for food...">
+                                <span class="icon is-medium is-left">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                            </div>
+                            <div id="food-results" class="mt-2">
+                                <!-- Dynamic food options will be appended here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column right">
+                        <div class="card">
+                            <header class="card-header">
+                                <p class="card-header-title">Selected Foods</p>
+                            </header>
+                            <div class="card-content">
+                                <table class="table is-fullwidth is-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Food</th>
+                                            <th>Protein (g)</th>
+                                            <th>Fat (g)</th>
+                                            <th>Carbs (g)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="selected-foods">
+                                        <!-- Selected foods with nutritional info will be added here -->
+                                    </tbody>
+                                </table>
+                                <button id="submit-foods" class="button is-primary is-fullwidth is-medium">Submit Foods</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="../public/js/foodPage.js"></script>
+</body>
+
+<style>
+    :root {
+        --brandColor: hsl(166, 67%, 51%);
+        --background: rgb(247, 247, 247);
+        --textDark: hsla(0, 0%, 0%, 0.66);
+        --textLight: hsla(0, 0%, 0%, 0.33);
+    }
+
+    body {
+        background: white;
+        height: 100vh;
+        color: var(--textDark);
+    }
+
+    .field:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+
+    .register {
+        
+        margin-top: 10rem;
+        background: white;
+        border-radius: 10px;
+    }
+
+    .left,
+    .right {
+        padding: 4.5rem;
+    }
+
+    .left {
+        border-right: 5px solid var(--background);
+    }
+
+    .left .title {
+        font-weight: 800;
+        letter-spacing: -2px;
+    }
+
+    .left .colored {
+        color: var(--brandColor);
+        font-weight: 500;
+        margin-top: 1rem !important;
+        letter-spacing: -1px;
+    }
+
+    .left p {
+        color: var(--textLight);
+        font-size: 1.15rem;
+    }
+
+    .right .title {
+        font-weight: 800;
+        letter-spacing: -1px;
+    }
+
+    .right .description {
+        margin-top: 1rem;
+        margin-bottom: 1rem !important;
+        color: var(--textLight);
+        font-size: 1.15rem;
+    }
+
+    .right small {
+        color: var(--textLight);
+    }
+
+    input {
+        font-size: 1rem;
+    }
+
+    input:focus {
+        border-color: var(--brandColor) !important;
+        box-shadow: 0 0 0 1px var(--brandColor) !important;
+    }
+
+    .fab,
+    .fas {
+        color: var(--textLight);
+        margin-right: 1rem;
+    }
+
+    #food-results {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+</style>
+
+</html>

@@ -12,6 +12,10 @@
     margin-bottom: 1.5rem;
 }
 
+.hero-body{
+    background-color: #00d1b2;
+}
+
 .card {
     border-radius: 8px;
     overflow: hidden;
@@ -31,7 +35,7 @@
 }
 
 .modal-card-head {
-    background: #f9f9f9;
+    text-decoration:;
     border-bottom: 1px solid #ddd;
 }
 
@@ -65,3 +69,24 @@
 .card-footer-item {
     color: #4a4a4a;
 }
+
+   .highlight {
+            border: 2px solid #00d1b2;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+
+        .modal {
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.is-active {
+            display: flex;
+        }
+        
+        .modal-card {
+            max-width: 500px;
+        }
+
