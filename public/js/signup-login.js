@@ -11,10 +11,10 @@ const signup = async (event) => {
     });
     if (response.status === 200) {
       window.location.replace("/questionnaire");
-      // document.location.replace('/')
-    } else {
+      // 
+    }/*  else {
       alert(response.statusText);
-    }
+    } */
   }
 };
 
@@ -30,10 +30,33 @@ const login = async (event) => {
       headers: { "Content-Type": "application/json" },
     });
     if (response.status === 200) {
-      document.location.replace("/");
+        const date = new Date().toJSON().slice(0,10)
+        const response = await fetch(`/api/tracking/createMeals`,{
+        method: 'POST',
+        body:JSON.stringify({date}),
+        headers: {'Content-Type': 'application/json'}
+    })
+    
+        if(response.status === 200){
+          document.location.replace('/')
+        }  
     }
   }
 };
 
+// const createMeals = async (event) => {
+//   event.preventDefault()
+//   const date = new Date().toJSON().slice(0,10)
+//   const response = await fetch(`/api/tracking/createMeal`,{
+//       method: 'POST',
+//       body:JSON.stringify({date}),
+//       headers: {'Content-Type': 'application/json'}
+//   })
+//   if(response.status === 200){
+//       console.log(response)
+//   }   
+    
+// }
 document.querySelector("#login").addEventListener("click", login);
 document.querySelector("#signup").addEventListener("click", signup);
+// window.addEventListener('unload',createMeals)

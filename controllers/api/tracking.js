@@ -39,42 +39,94 @@ router.post('/createCustomMeal', async (req, res) => {
 }); */
 
 
-/* router.post('/createMeal', async (req, res) => {
+router.post('/createMeals', async (req, res) => {
   try{
-    const isMeals = await Meal.findAll({
+
+    const createBreakfast = await Meal.findOrCreate({
       where:{
+        meal_time:'Breakfast',
         userCred_id:req.session.userInfo.id,
-        date:today
-      }
+        date:req.body.date
+      },
+      defaults:{},
+      include:[{model:Portion}]
+    })
+    const createLunch = await Meal.findOrCreate({
+      where:{
+        meal_time:'Lunch',
+        userCred_id:req.session.userInfo.id,
+        date:req.body.date
+      },
+      defaults:{},
+      include:[{model:Portion}]
+    })
+    const createDinner = await Meal.findOrCreate({
+      where:{
+        meal_time:'Dinner',
+        userCred_id:req.session.userInfo.id,
+        date:req.body.date
+      },
+      defaults:{},
+      include:[{model:Portion}]
     })
 
-    if(!isMeals){
-      const meals = await Meal.bulkCreate(
-        {
-          meal_time:'Breakfast',
-          userCred_id:req.session.userInfo.id
-        },
-        {
-          meal_time:'Lunch',
-          userCred_id:req.session.userInfo.id
-        },
-        {
-          meal_time:'Dinner',
-          userCred_id:req.session.userInfo.id
-        }
-      )
-      res.status(200).json(meals)
-      return
-    }
+    /* const createMeals = await Meal.bulkCreate(
+      {
+        meal_time:'Breakfast',
+        userCred_id:req.session.userInfo.id,
+        date:req.body.date
+      },
+      {
+        meal_time:'Lunch',
+        userCred_id:req.session.userInfo.id,
+        date:req.body.date
+      },
+      {
+        meal_time:'Dinner',
+        userCred_id:req.session.userInfo.id,
+        date:req.body.date
+      }
+    ) */
+      
+  /* const isMeal = await Meal.findOrCreate({
+    where:{
+      meal_time:req.body.mealTime,
+      userCred_id:req.session.userInfo.id,
+      date:req.body.date
+    },
+    defaults:{},
+    include:[{model:Portion}]
+  }) */
+  res.status(200).json(createBreakfast,createLunch,createDinner)
 
-    res.status(200).json(isMeals)
+  /*console.log(isMeal)
+  console.log(isMeal.dataValuess.id)
+  const meal = isMeal.get({plain:true})
+  console.log(meal.id)
+   req.session.save(() => {
+    req.session.meal = meal.id
+    res.status(200).json(meal)
+  }) */
     
   } 
   catch{
     res.status(500).json('failed to create meals')
   } 
   
-}) */
+})
+
+router.post('/saveMealId', async (req, res) => {
+  
+  try{
+    
+      req.session.meal = req.body.mealId
+      res.status(200).json()
+  }
+  catch{
+    res.status(500).json('failed to save meal Id')
+  }
+  
+})
 
 // router.post('/createMeal', async (req, res) => {
     
@@ -88,24 +140,34 @@ router.post('/createCustomMeal', async (req, res) => {
 
 // do /:id for foods,foodinfo, meals pages on homeRoutes
 //create portion
-router.post('/:id/portion', async (req, res) => {
+router.post('/standard', async (req, res) => {
   try{
+
+    const food = await Food.findOne({
+      where:{
+        id:req.body.id
+      }
+    })
     const portion = await Portion.create(
       /* {
         include:[{model:Meal}]
       }, */
       {
-        portion:req.body.portion, 
-        protein:req.body.protein,
-        carbs:req.body.carbs,
-        fat:req.body.fat,
-        calories:req.body.calories,
-        food_id:req.body.food_id
+        portion:food.serving_size, 
+        protein:food.protein,
+        carbs:food.carbs,
+        fat:food.fat,
+        calories:food.calories,
+        food_id:req.body.id
       }
     )
+    const addToMeal = await PortionInMeal.create({
+      portion_id:portion.id,
+      meal_id:req.session.meal
+    })
     // req.session.meal_id = req.params.id
-    req.session.portion_id = portion.id
-    res.status(200).json(portion)
+    // req.session.portion_id = portion.id
+    res.status(200).json(food,portion,addToMeal)
   }
   catch{
     res.status(500).json('failed to create portion')

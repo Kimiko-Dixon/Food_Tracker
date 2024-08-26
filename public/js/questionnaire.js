@@ -20,11 +20,17 @@ const questionnaire = async (event) => {
       headers: { "Content-Type": "application/json" }
     });
     if (response.status === 200) {
-      window.location.replace("/");
-    }
-    else {
-      alert(response.statusText);
-    }
+      const date = new Date().toJSON().slice(0,10)
+      const response = await fetch(`/api/tracking/createMeals`,{
+      method: 'POST',
+      body:JSON.stringify({date}),
+      headers: {'Content-Type': 'application/json'}
+  })
+  
+      if(response.status === 200){
+        document.location.replace('/')
+      }  
+  }
   }
 };
 

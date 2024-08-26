@@ -15,10 +15,10 @@ CustomMeal.init(
             type:DataTypes.STRING,
             allowNull:false
         },
-        person_id:{
+        userCred_id:{
             type: DataTypes.INTEGER,
             references:{
-                model: 'person',
+                model: 'user_creds',
                 key: 'id'
             }
         }

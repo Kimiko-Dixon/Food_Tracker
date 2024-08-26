@@ -1,56 +1,53 @@
-const { Portion } = require("../models");
+const { Food } = require("../models");
 
-const foodsPortions = [
+const foods = [
   {
-    food_name: "oats",
-    portion: 40,
+    name: "oats",
     protein: 5,
     carbs: 27,
     fat: 2.5,
     calories: 150,
+    serving_size:40,
+    serving_unit:'g'
   },
   {
-    food_name: "fat free failife milk",
-    portion: 240,
+    name: "fat free failife milk",
     protein: 13,
     carbs: 6,
     fat: 0,
     calories: 80,
+    serving_size:240,
+    serving_unit:'g'
   },
   {
-    food_name: "date sugar",
-    portion: 4,
+    name: "date sugar",
     protein: 0,
     carbs: 4,
     fat: 0,
     calories: 16,
+    serving_size:4,
+    serving_unit:'g'
   },
   {
-    food_name: "frozen blueberries",
-    portion: 140,
+    name: "frozen blueberries",
     protein: 0.6,
     carbs: 17,
     fat: 1,
     calories: 77,
+    serving_size:140,
+    serving_unit:'g'
   },
   {
-    food_name: "extra large egg",
-    portion: 1,
+    name: "extra large egg",
     protein: 7,
     carbs: 0,
     fat: 5,
     calories: 73,
-  },
-  {
-    food_name: "extra large egg",
-    portion: 2,
-    protein: 7,
-    carbs: 0,
-    fat: 5,
-    calories: 73,
+    serving_size:1,
+    serving_unit:'egg'
   },
 ];
 
-const portionSeeds = () => Portion.bulkCreate(foodsPortions);
+const foodSeeds = () => Food.bulkCreate(foods);
 
-module.exports = portionSeeds;
+module.exports = foodSeeds;

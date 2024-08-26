@@ -53,6 +53,7 @@ router.post("/signup", async (req, res) => {
         id: signup.id,
         username: signup.username,
       };
+      req.session.meal = 0
       res.status(200).json(signup);
     });
     
@@ -85,6 +86,7 @@ router.post("/login", async (req, res) => {
         id: user.id,
         username: user.username,
       };
+      req.session.meal = 0
       res.status(200).json(user);
     });
   }catch{

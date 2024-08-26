@@ -1,0 +1,86 @@
+<body>
+    <!-- <div id="app">
+      <nav class="navbar has-shadow">
+        <div class="container">
+          <div class="navbar-brand"><a class="navbar-item" href="../">
+          <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox"/></a>
+        </div>
+      </div>
+    </nav> -->
+    <div class="column is-9.5">
+    <section class="hero is-info">
+      <div class="hero-body">
+        <div class="container">
+          <div class="card">
+            <div class="card-content">
+              <div class="content">
+                <div class="control has-icons-left has-icons-right search-field">
+                  <input class="input is-large" type="text" placeholder="" v-model="search" /><span class="icon is-medium is-left"><i class="fa fa-search"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <div class="column is-9.5">
+        <!-- <div class="columns">
+            <div class="column is-6">
+                <div class="card events-card">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            Events
+                        </p>
+                        <a href="#" class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
+          </span>
+        </a>
+                    </header> -->
+                    <div class="card-table">
+                        <div class="content">
+                            <table class="table is-fullwidth is-striped">
+                                <tbody class="standard">
+                                  {{#each foods}}
+                                    <tr>
+                                        <td width="5%"></td>
+                                        <td><a href="#">{{this.name}}</a></td>
+                                        <td class="level-right"><button><ion-icon data-foodid="{{this.id}}" name="add-circle-outline"></ion-icon></button></td>
+                                    </tr>
+                                    {{/each}}
+                                    <!-- <tr>
+                                        <td width="5%"></td>
+                                        <td>Lorum ipsum dolem aire</td>
+                                        <td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+    </div>
+        <!-- <section class="hero is-info welcome is-small">
+          <div class="hero-body">
+            <div class="container">
+              <h1 class="title">Hello, {{username}}.</h1>
+              <h2 class="subtitle">I hope you are having a great day!</h2>
+            </div>
+          </div>
+        </section> -->
+        <!-- <section class="info-tiles">
+          <div class="tile is-ancestor has-text-centered">
+            <div class="tile is-parent">
+              <article class="tile is-child box">
+                <p class="title">Calories Goal</p>
+                <p class="subtitle" id="calorieGoal">{{calorieGoal}} cal</p>
+              </article>
+            </div>
+        </section> -->
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="/js/food-portion.js"></script>
+</body>
+</html>
