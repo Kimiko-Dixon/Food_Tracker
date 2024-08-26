@@ -3,7 +3,6 @@ const foodsList = document.querySelector('.standard')
 const createStandardPortion = async (event) => {
     event.preventDefault()
     console.log(event)
-    // const portion = document.querySelector('#portion')
     if(event.target.dataset.foodid){
         const id = event.target.dataset.foodid
         if(id){

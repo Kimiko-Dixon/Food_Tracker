@@ -1,12 +1,115 @@
-<body>
-    <!-- <div id="app">
-      <nav class="navbar has-shadow">
-        <div class="container">
-          <div class="navbar-brand"><a class="navbar-item" href="../">
-          <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox"/></a>
+{{!-- <nav class="navbar is-white is-shadowless">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            <img src="/images/logo.png" alt="Logo" width="112" height="28" />
+          </a>
+        </div>
+        <div id="navMenu" class="navbar-menu">
+          <div class="navbar-end">
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link"> Profile </a>
+              <div class="navbar-dropdown is-right">
+                <a class="navbar-item" id="account-settings">
+                  Account Settings
+                </a>
+                <a class="navbar-item" id="goal-settings"> Goal Settings </a>
+                <a class="navbar-item" id="logout"> Logout </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </nav> -->
+    </nav>
+
+    <!-- Account Settings Modal -->
+    <div id="account-settings-modal" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Change Password</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <div class="field">
+            <label class="label">New Password</label>
+            <div class="control">
+              <input
+                id="new-password"
+                class="input"
+                type="password"
+                placeholder="Enter new password"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Verify Password</label>
+            <div class="control">
+              <input
+                id="verify-password"
+                class="input"
+                type="password"
+                placeholder="Verify new password"
+              />
+            </div>
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <button id="change-password-btn" class="button is-success">
+            Change Password
+          </button>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Goal Settings Modal -->
+    <div id="goal-settings-modal" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Goal Settings</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <div class="field">
+            <label class="label">Current Weight</label>
+            <div class="control">
+              <input
+                id="current-weight"
+                class="input"
+                type="number"
+                placeholder="Enter current weight"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Weight Goal</label>
+            <div class="control">
+              <input
+                id="weight-goal"
+                class="input"
+                type="number"
+                placeholder="Enter weight goal"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Calorie Goal</label>
+            <div class="control">
+              <input
+                id="calorie-goal"
+                class="input"
+                type="number"
+                placeholder="Enter calorie goal"
+              />
+            </div>
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success">Save Changes</button>
+        </footer>
+      </div>
+    </div> --}}
     <div class="column is-9.5">
     <section class="hero is-info">
       <div class="hero-body">
@@ -26,19 +129,6 @@
     </div>
 
     <div class="column is-9.5">
-        <!-- <div class="columns">
-            <div class="column is-6">
-                <div class="card events-card">
-                    <header class="card-header">
-                        <p class="card-header-title">
-                            Events
-                        </p>
-                        <a href="#" class="card-header-icon" aria-label="more options">
-          <span class="icon">
-            <i class="fa fa-angle-down" aria-hidden="true"></i>
-          </span>
-        </a>
-                    </header> -->
                     <div class="card-table">
                         <div class="content">
                             <table class="table is-fullwidth is-striped">
@@ -47,40 +137,16 @@
                                     <tr>
                                         <td width="5%"></td>
                                         <td><a href="#">{{this.name}}</a></td>
+                                        <td>{{this.calories}}cals protein:{{this.protein}}g carbs:{{this.carbs}}g fat:{{this.fat}}g</td>
                                         <td class="level-right"><button><ion-icon data-foodid="{{this.id}}" name="add-circle-outline"></ion-icon></button></td>
                                     </tr>
                                     {{/each}}
-                                    <!-- <tr>
-                                        <td width="5%"></td>
-                                        <td>Lorum ipsum dolem aire</td>
-                                        <td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
-                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
     </div>
-        <!-- <section class="hero is-info welcome is-small">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">Hello, {{username}}.</h1>
-              <h2 class="subtitle">I hope you are having a great day!</h2>
-            </div>
-          </div>
-        </section> -->
-        <!-- <section class="info-tiles">
-          <div class="tile is-ancestor has-text-centered">
-            <div class="tile is-parent">
-              <article class="tile is-child box">
-                <p class="title">Calories Goal</p>
-                <p class="subtitle" id="calorieGoal">{{calorieGoal}} cal</p>
-              </article>
-            </div>
-        </section> -->
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
     <script src="/js/food-portion.js"></script>
-</body>
-</html>

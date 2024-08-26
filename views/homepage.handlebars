@@ -112,23 +112,6 @@
     </div>
 
     <div class="container">
-      <!-- <div class="columns">
-            <div class="column is-3 mt-5">
-                <aside class="menu is-hidden-mobile">
-                    <p class="menu-label">Choose your meal</p>
-                    <ul class="menu-list">
-                        <li><a class="{{#if isBreakfastActive}}is-active{{/if}}">Breakfast</a></li>
-                        <li><a class="{{#if isLunchActive}}is-active{{/if}}">Lunch</a></li>
-                        <li><a class="{{#if isDinnerActive}}is-active{{/if}}">Dinner</a></li>
-                    </ul>
-                    <p class="menu-label">Food Tracker</p>
-                    <ul class="menu-list">
-                        <li><a>Food search</a></li>
-                        <li><a>Progress Bar</a></li>
-                        <li><a>Your Meals</a></li>
-                    </ul>
-                </aside>
-            </div> -->
       <div class="column is-9.5">
         <section class="hero is-info welcome is-small">
           <div class="hero-body">
@@ -162,24 +145,6 @@
         </section>
 
         <div class="column is-9.5">
-          <!-- <section class="hero is-info welcome is-small">
-                        <div class="hero-body">
-                            <div class="container">
-                                <h2 class="title">Breakfast</h2>
-                                 <h2 class="subtitle">I hope you are having a great day!</h2> 
-                            </div>
-                        </div>
-                    </section>
-                    <section class="info-tiles">
-                        <div class="tile is-ancestor has-text-centered">
-                            <div class="tile is-parent">
-                                <article class="tile is-child box">
-                                    
-                                </article>
-                            </div>
-                        </div>
-                    </section> -->
-
           <div class="fixed-grid has-2-cols">
             <div class="grid">
               <div class="cell">
@@ -194,8 +159,9 @@
                         <tbody>
                           {{#each breakfast.portions}}
                           <tr>
-                            <td width="5%"></td>
+                            <td width="5%">{{this.portion}}{{this.food.serving_unit}}</td>
                             <td>{{this.food.name}}</td>
+                            <td>{{this.calories}}cals protein:{{this.protein}}g carbs:{{this.carbs}}g fat:{{this.fat}}g</td>
                           </tr>
                           {{/each}}
                         </tbody>
@@ -244,8 +210,9 @@
                               <tbody>
                                 {{#each lunch.portions}}
                           <tr>
-                            <td width="5%"></td>
+                            <td width="5%">{{this.portion}}{{this.food.serving_unit}}</td>
                             <td>{{this.food.name}}</td>
+                            <td>{{this.calories}}cals protein:{{this.protein}}g carbs:{{this.carbs}}g fat:{{this.fat}}g</td>
                           </tr>
                           {{/each}}
                               </tbody>
@@ -267,8 +234,9 @@
                         <tbody>
                           {{#each dinner.portions}}
                           <tr>
-                            <td width="5%"></td>
+                            <td width="5%">{{this.portion}}{{this.food.serving_unit}}</td>
                             <td>{{this.food.name}}</td>
+                            <td>{{this.calories}}cals protein:{{this.protein}}g carbs:{{this.carbs}}g fat:{{this.fat}}g</td>
                           </tr>
                           {{/each}}
                         </tbody>
@@ -281,7 +249,5 @@
         </div>
       </div>
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="/js/foodLog.js"></script>
 </html>

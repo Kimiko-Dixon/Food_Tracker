@@ -26,9 +26,6 @@ Users.init(
     exercise_intensity: {
       type: DataTypes.STRING,
     },
-    /* weight_goal: {
-      type: DataTypes.INTEGER,
-    }, */
     calorie_goal: {
       type: DataTypes.INTEGER,
       allowNull: false,

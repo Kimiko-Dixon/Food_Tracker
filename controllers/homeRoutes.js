@@ -14,10 +14,6 @@ router.get('/login', (req, res) => {
 
 router.get("/foods",withAuth, async (req, res) => {
   try {
-    // if (!req.session.loggedIn) {
-    //   res.redirect("/login);");
-    //   return;
-    // }
 
     // Get all foods and JOIN with user data
     const foodData = await Food.findAll({});
@@ -27,10 +23,7 @@ router.get("/foods",withAuth, async (req, res) => {
 
     console.log(foods)
     // Pass serialized data and session flag into template
-    res.render("foods", {
-      foods/* ,
-      logged_in: req.session.logged_in, */
-    });
+    res.render("foods", {foods});
   } catch (err) {
     res.status(500).json(err);
   }
@@ -46,34 +39,6 @@ router.get("/",withAuth, async (req, res) => {
   let fatTracked = 0
   const date = new Date().toJSON().slice(0,10)
     
-  /* const isBreakfast = await Meal.findOrCreate({
-    where:{
-      meal_time:'Breakfast',
-      userCred_id:req.session.userInfo.id,
-      date:date
-    },
-    defaults:{},
-    include:[{model:Portion}]
-  })
-  const isLunch = await Meal.findOrCreate({
-    where:{
-      meal_time:'Lunch',
-      userCred_id:req.session.userInfo.id,
-      date:date
-    },
-    defaults:{},
-    include:[{model:Portion}]
-  })
-  const isDinner = await Meal.findOrCreate({
-    where:{
-      meal_time:'Dinner',
-      userCred_id:req.session.userInfo.id,
-      date:date
-    },
-    defaults:{},
-    include:[{model:Portion}]
-  })
-  console.log(isBreakfast,isLunch,isDinner) */
   const isBreakfast = await Meal.findOne({
     include:[{model:Portion}],
     where:{
@@ -98,27 +63,6 @@ router.get("/",withAuth, async (req, res) => {
       meal_time:'Dinner'
     }
   })
-  /* let meals=[]
-  if(!loggedPortions){
-    meals = await Meal.bulkCreate(
-      {
-        meal_time:'Breakfast',
-        userCred_id:req.session.userInfo.id
-      },
-      {
-        meal_time:'Lunch',
-        userCred_id:req.session.userInfo.id
-      },
-      {
-        meal_time:'Dinner',
-        userCred_id:req.session.userInfo.id
-      }
-    )
-  }
-  else{
-    meals = loggedPortions.map(p => p.get({plain:true}))
-  } */
-  // const meals = loggedPortions.map(p => p.get({plain:true}))
   
   const foodStats = await Users.findOne({
     where:{
@@ -178,14 +122,6 @@ router.get("/",withAuth, async (req, res) => {
 
   console.log(breakfast,lunch,dinner)
 
-  /* meals.forEach(meal=>{
-    meal.forEach(portion => {
-      calsTracked += portion.calories
-      proteinTracked += portion.protein
-      carbsTracked += portion.carbs
-      fatTracked += portion.fat
-    })
-  }) */
   const calsLeft = calsAndMacs.calorie_goal - calsTracked
 
   res.render("homepage",{
@@ -204,9 +140,5 @@ router.get("/",withAuth, async (req, res) => {
     fatGoal:calsAndMacs.fat_goal
   });
 });
-
-// router.get('/login', async (req, res) => {
-//   res.render('login')
-// })
 
 module.exports = router;

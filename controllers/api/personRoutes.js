@@ -26,20 +26,6 @@ const { UserCreds, Users } = require("../../models");
 //       });
 //   });
 
-// Delete route for a Users with a matching id
-// router.delete('/:Users_id', (req, res) => {
-//     // Looks for the books based book_id given in the request parameters
-//     Users.destroy({
-//       where: {
-//         id: req.params.Users_id,
-//       },
-//     })
-//       .then((deletedUsers) => {
-//         res.json(deletedUsers);
-//       })
-//       .catch((err) => res.json(err));
-//   });
-
 //signup
 router.post("/signup", async (req, res) => {
   try {
@@ -57,11 +43,34 @@ router.post("/signup", async (req, res) => {
       res.status(200).json(signup);
     });
     
-    // res.render('questionnaire  ')
   } catch {
     res.status(500).json("error creating account");
   }
 });
+
+router.post('/questionnaire', async (req, res) => {
+  try{
+  
+    const userStats = await Users.create({
+      weight: req.body.weight,
+      height: req.body.height,
+      age: req.body.age,
+      gender: req.body.gender,
+      exercise_intensity:req.body.exerciseIntensity,
+      calorie_goal:req.body.calorieGoal,
+      protien_goal:req.body.protienGoal,
+      carb_goal: req.body.carbGoal,
+      fat_goal:req.body.fatGoal,
+      creds_id:req.session.userInfo.id
+    })
+
+    res.status(200).json(userStats)
+  }
+  catch{
+    res.status(500).json('failed to save questionnaire')
+  }
+  
+})
 
 //login
 router.post("/login", async (req, res) => {
@@ -97,12 +106,17 @@ router.post("/login", async (req, res) => {
 });
 
 //logout
-// router.post('/logout', async (req, res) => {
+router.post('/logout', async (req, res) => {
+  if(req.session.loggedIn){
+    req.session.destroy((() => res.status(204).end()))
+  }
+  else{
+    res.status(404).end()
+  }
+})
 
-// })
-
-router.post("/calories", async (req, res) => {
+/* router.post("/calories", async (req, res) => {
   const userStats = await Users.create();
-});
+}); */
 
 module.exports = router;

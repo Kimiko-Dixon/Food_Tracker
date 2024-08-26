@@ -11,10 +11,7 @@ const signup = async (event) => {
     });
     if (response.status === 200) {
       window.location.replace("/questionnaire");
-      // 
-    }/*  else {
-      alert(response.statusText);
-    } */
+    }
   }
 };
 
@@ -44,19 +41,5 @@ const login = async (event) => {
   }
 };
 
-// const createMeals = async (event) => {
-//   event.preventDefault()
-//   const date = new Date().toJSON().slice(0,10)
-//   const response = await fetch(`/api/tracking/createMeal`,{
-//       method: 'POST',
-//       body:JSON.stringify({date}),
-//       headers: {'Content-Type': 'application/json'}
-//   })
-//   if(response.status === 200){
-//       console.log(response)
-//   }   
-    
-// }
 document.querySelector("#login").addEventListener("click", login);
 document.querySelector("#signup").addEventListener("click", signup);
-// window.addEventListener('unload',createMeals)

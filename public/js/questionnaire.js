@@ -14,7 +14,7 @@ const questionnaire = async (event) => {
 
   if (height && weight && age && gender && exerciseIntensity && calorieGoal && protienGoal && carbGoal && fatGoal) {
     
-    const response = await fetch("/api/tracking/questionnaire",{
+    const response = await fetch("/api/person/questionnaire",{
       method: "POST",
       body: JSON.stringify({height,weight,age,gender,exerciseIntensity,calorieGoal,protienGoal,carbGoal,fatGoal}),
       headers: { "Content-Type": "application/json" }
