@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const fitnessCalculator = require('fitness-calculator')
 const { Meal,Portion,Food,PortionInMeal,PortionInCustomMeal,CustomMeal,Users} = require('../../models');
 
 /* router.post('/portionInCustomMeal', async (req, res) => {
@@ -92,6 +91,19 @@ router.post('/saveMealId', async (req, res) => {
   
 })
 
+/* router.post('/search', async (req, res) => {
+  try{
+    const searchedFood = await Food.findOne({
+      where:{
+        name:req.body.searchTerm
+      }
+    })
+    res.status(200).json(searchedFood)
+  }
+  catch{
+    res.status(500).json('failed to search for food')
+  }
+}) */
 //create portion
 router.post('/standard', async (req, res) => {
   try{

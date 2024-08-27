@@ -29,6 +29,26 @@ router.get("/foods",withAuth, async (req, res) => {
   }
 });
 
+/* router.get("/searchedFood",withAuth, async (req, res) => {
+  try {
+    // Get all foods and JOIN with user data
+    const foodData = await Food.findOne({
+      where:{
+        name:req.body.searchTerm
+      }
+    });
+
+    // Serialize data so the template can read it
+    const food = foodData.get({ plain: true });
+
+    console.log(food)
+    // Pass serialized data and session flag into template
+    res.render("foods", {food});
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+ */
 router.get("/questionnaire", withAuth,async (req, res) => {
   res.render("questionnaire");
 });

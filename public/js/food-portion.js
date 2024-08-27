@@ -1,4 +1,21 @@
-const foodsList = document.querySelector('.standard')
+/* const search = async (event) => {
+    event.preventDefault()
+        const searchTerm = document.querySelector('#searchBar').value
+        console.log(event)
+        console.log(searchTerm)
+        
+        if(searchTerm){
+        const response = await fetch(`/api/tracking/search`,{
+            method: 'POST',
+            body:JSON.stringify({searchTerm}),
+            headers: {'Content-Type': 'application/json'}
+        })
+         if(response.status === 200){
+            console.log(response.searchedFood)
+            // document.location.replace('/searchedFood')
+        } 
+        }
+} */
 
 const createStandardPortion = async (event) => {
     event.preventDefault()
@@ -17,4 +34,5 @@ const createStandardPortion = async (event) => {
     }
     }
 }
-foodsList.addEventListener('click',createStandardPortion)
+document.querySelector('.standard').addEventListener('click',createStandardPortion)
+/* document.querySelector('#search').addEventListener('click',search) */
