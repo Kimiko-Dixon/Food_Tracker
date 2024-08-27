@@ -1,35 +1,34 @@
-const {Model,DataTypes} = require('sequelize')
+const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../config/connection.js')
 
-class CustomMeal extends Model{}
+class CustomMeal extends Model {}
 
 CustomMeal.init(
     {
-        id:{
+        id: {
             type: DataTypes.INTEGER,
-            allowNull:false,
+            allowNull: false,
             autoIncrement: true,
-            primaryKey:true
+            primaryKey: true,
         },
-        name:{
-            type:DataTypes.STRING,
-            allowNull:false
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
         },
-        userCred_id:{
+        userCred_id: {
             type: DataTypes.INTEGER,
-            references:{
+            references: {
                 model: 'user_creds',
-                key: 'id'
-            }
-        }
+                key: 'id',
+            },
+        },
     },
     {
         sequelize,
-        timestamps:false,
+        timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName:'custom_meal'
-
+        modelName: 'custom_meal',
     }
 )
 
