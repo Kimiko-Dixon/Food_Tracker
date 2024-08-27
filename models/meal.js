@@ -11,9 +11,20 @@ Meal.init(
             autoIncrement: true,
             primaryKey:true
         },
-        name:{
-            type:DataTypes.STRING,
-            allowNull:false,
+        date:{
+            type: DataTypes.DATEONLY,
+            defaultValue:DataTypes.NOW
+        },
+        meal_time:{
+            type: DataTypes.STRING,
+            allowNull:false
+        },
+        userCred_id:{
+            type: DataTypes.INTEGER,
+            references:{
+                model: 'user_creds',
+                key: 'id'
+            }
         }
     },
     {
