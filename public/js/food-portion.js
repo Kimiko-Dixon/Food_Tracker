@@ -17,6 +17,7 @@
         }
 } */
 
+//Calls api to create the serving_size portion and add to the meal
 const createStandardPortion = async (event) => {
     event.preventDefault()
     console.log(event)

@@ -1,3 +1,4 @@
+//Calls api to save meal id for adding selected portions to
 const saveMealId = async (event) => {
     event.preventDefault()
     const mealId = event.target.dataset.mealid
@@ -14,6 +15,7 @@ const saveMealId = async (event) => {
     } 
 }
 
+//Calls api to logout of account
 const logout = async (event) => {
     event.preventDefault()
         const response = await fetch(`/api/person/logout`,{

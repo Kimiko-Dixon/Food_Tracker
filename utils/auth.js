@@ -1,4 +1,4 @@
-// Middleware/JS for login
+// Middleware for login
 
 const withAuth = (req, res, next) => {
     if (!req.session.loggedIn){

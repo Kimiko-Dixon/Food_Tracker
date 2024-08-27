@@ -2,6 +2,8 @@ const router = require("express").Router();
 const { Food,Portion,Meal, Users, UserCreds } = require("../models");
 const withAuth = require('../utils/auth.js');
 
+//Get Routes
+
 // Login route
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
@@ -12,6 +14,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+//Displays all foods from database
 router.get("/foods",withAuth, async (req, res) => {
   try {
 
@@ -49,16 +52,21 @@ router.get("/foods",withAuth, async (req, res) => {
   }
 });
  */
+
+//Displays the questionnaire
 router.get("/questionnaire", withAuth,async (req, res) => {
   res.render("questionnaire");
 });
+//Displays the homepage with the portions added to each meal, the calorie goal, calories tracked, calories left, and macros tracked
 router.get("/",withAuth, async (req, res) => {
   let calsTracked = 0
   let proteinTracked = 0
   let carbsTracked = 0
   let fatTracked = 0
+  //Today's date
   const date = new Date().toJSON().slice(0,10)
-    
+  
+  //Find the meals for today
   const isBreakfast = await Meal.findOne({
     include:[{model:Portion}],
     where:{
@@ -83,7 +91,7 @@ router.get("/",withAuth, async (req, res) => {
       meal_time:'Dinner'
     }
   })
-  
+  //Find the user with it's credentials
   const foodStats = await Users.findOne({
     where:{
       creds_id:req.session.userInfo.id
@@ -91,6 +99,7 @@ router.get("/",withAuth, async (req, res) => {
     include:[{model:UserCreds}]
   })
   
+  //For each meal add the calories and macros tracked, as well as the food associated with the portion
     const breakfast = isBreakfast.get({plain:true})
     breakfast.portions.forEach(async portion=>{
       calsTracked += parseInt(portion.calories)
@@ -121,7 +130,6 @@ router.get("/",withAuth, async (req, res) => {
       portion.food = foodPortion.get({plain:true})
     })
 
-  
     const dinner = isDinner.get({plain:true})
     dinner.portions.forEach(async portion=>{
       calsTracked += parseInt(portion.calories)
@@ -140,10 +148,10 @@ router.get("/",withAuth, async (req, res) => {
   
   const calsAndMacs = foodStats.get({plain:true})
 
-  console.log(breakfast,lunch,dinner)
-
+  //Calculate calories left
   const calsLeft = calsAndMacs.calorie_goal - calsTracked
 
+  //Send all information to frontend
   res.render("homepage",{
     breakfast:breakfast,
     lunch:lunch,

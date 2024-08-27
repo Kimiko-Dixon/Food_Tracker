@@ -1,5 +1,6 @@
 const { Food } = require("../models");
 
+//Food seeds
 const foods = [
   {
     name: "oats",
@@ -48,6 +49,7 @@ const foods = [
   },
 ];
 
+//Bulk create foods
 const foodSeeds = () => Food.bulkCreate(foods);
 
 module.exports = foodSeeds;

@@ -37,7 +37,7 @@ router.post('/createCustomMeal', async (req, res) => {
     }
 }); */
 
-
+//Find or create breakfast,lunch, and dinner meals for the current day
 router.post('/createMeals', async (req, res) => {
   try{
 
@@ -78,6 +78,7 @@ router.post('/createMeals', async (req, res) => {
   
 })
 
+//Save meal id for when adding food to the meal selected
 router.post('/saveMealId', async (req, res) => {
   
   try{
@@ -104,15 +105,17 @@ router.post('/saveMealId', async (req, res) => {
     res.status(500).json('failed to search for food')
   }
 }) */
-//create portion
+
+//Create serving size portion for the selected food
 router.post('/standard', async (req, res) => {
   try{
-
+    //find food by id
     const food = await Food.findOne({
       where:{
         id:req.body.id
       }
     })
+    //create a portion that has the same values
     const portion = await Portion.create(
       {
         portion:food.serving_size, 
@@ -123,6 +126,7 @@ router.post('/standard', async (req, res) => {
         food_id:req.body.id
       }
     )
+    //create the relationship between the meal and the portion
     const addToMeal = await PortionInMeal.create({
       portion_id:portion.id,
       meal_id:req.session.meal
