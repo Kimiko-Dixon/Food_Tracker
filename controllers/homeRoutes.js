@@ -32,7 +32,7 @@ router.get('/foods', async (req, res) => {
 });
 
 router.get('/questionnare', async (req, res) => {
-  res.render('questionnare')
+  res.render('questionnarie')
 })
 
 router.get('/foodInfo', async (req, res) => {
