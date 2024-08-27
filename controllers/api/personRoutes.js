@@ -1,30 +1,32 @@
 const router = require("express").Router();
 const { UserCreds, Users } = require("../../models");
 
-//goal settings
-// router.put('/:Users_id', (req, res) => {
-//     //Calls the update method on the Users model
-//     Users.update(
-//       {
-//         // All the fields you can update and the data attached to the request body.
-//         height: req.body.height,
-//         weight: req.body.weight,
-//         age: req.body.age,
-//       },
-//       {
-//         where: {
-//           id: req.params.Users_id,//req.session.userid
-//         },
-//       }
-//     )
-//       .then((updatedUsers) => {
-//         res.json(updatedUsers);
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//         res.json(err);
-//       });
-//   });
+/* goal settings
+router.put('/:Users_id', (req, res) => {
+    //Calls the update method on the Users model
+    Users.update(
+      {
+        // All the fields you can update and the data attached to the request body.
+        height: req.body.height,
+        weight: req.body.weight,
+        age: req.body.age,
+      },
+      {
+        where: {
+          id: req.params.Users_id,//req.session.userid
+        },
+      }
+    )
+      .then((updatedUsers) => {
+        res.json(updatedUsers);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json(err);
+      });
+  }); */
+
+//Routes for personal credentials
 
 //signup
 router.post("/signup", async (req, res) => {
@@ -48,6 +50,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
+//questionnaire
 router.post('/questionnaire', async (req, res) => {
   try{
   
@@ -114,9 +117,5 @@ router.post('/logout', async (req, res) => {
     res.status(404).end()
   }
 })
-
-/* router.post("/calories", async (req, res) => {
-  const userStats = await Users.create();
-}); */
 
 module.exports = router;

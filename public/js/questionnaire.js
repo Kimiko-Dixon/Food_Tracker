@@ -1,3 +1,4 @@
+//Calls api to add answers to questionnaire and calculated calorie and macronutient goals to database
 const questionnaire = async (event) => {
   event.preventDefault();
   const height = parseFloat(document.querySelector("#height").value);
@@ -6,6 +7,7 @@ const questionnaire = async (event) => {
   const gender = document.querySelector("#gender").value;
   const exerciseIntensity = document.querySelector("#exerciseIntensity").value;
 
+  //Calculate BMR
   let bmr = 0;
   if(gender === 'Male'){
     bmr = 10*weight + 6.25*height - 5*age + 5
@@ -14,6 +16,7 @@ const questionnaire = async (event) => {
     bmr = 10*weight + 6.25*height - 5*age - 161
   }
 
+  //Calculate calorie goal
   let calorieGoal = 0
   switch(exerciseIntensity){
     case 'Sedentary':
@@ -30,12 +33,10 @@ const questionnaire = async (event) => {
       break
   }
 
-  
+  //Macronutient split
   const protienGoal = Math.floor((calorieGoal * 0.3) / 4);
   const carbGoal = Math.floor((calorieGoal * 0.4) / 4);
   const fatGoal = Math.floor((calorieGoal * 0.3) / 9);
-
-  console.log(calorieGoal,protienGoal,carbGoal,fatGoal)
 
   if (height && weight && age && gender && exerciseIntensity && calorieGoal && protienGoal && carbGoal && fatGoal) {
     

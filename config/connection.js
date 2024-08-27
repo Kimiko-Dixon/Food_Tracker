@@ -1,10 +1,15 @@
+
 const Sequelize = require('sequelize')
 require('dotenv').config()
+
+//Connection with database
 let sequelize
 
+//For deployed application
 if(process.env.DB_URL){
     sequelize = new Sequelize(process.env.DB_URL)
 }
+//For local use
 else{
     sequelize = new Sequelize(
     process.env.DB_NAME,

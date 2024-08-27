@@ -1,3 +1,4 @@
+//Calls api to signup for an account
 const signup = async (event) => {
   event.preventDefault();
   const signUsername = document.querySelector("#signUsername").value;
@@ -15,6 +16,7 @@ const signup = async (event) => {
   }
 };
 
+//Calls api to login to account
 const login = async (event) => {
   event.preventDefault();
   const loginUsername = document.querySelector("#loginUsername").value;
