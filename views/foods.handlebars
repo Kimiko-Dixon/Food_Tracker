@@ -24,8 +24,8 @@
                                 <tbody class="standard">
                                   {{#each foods}}
                                     <tr>
-                                        <td width="5%"></td>
-                                        <td><a href="#">{{this.name}}</a></td>
+                                        <td width="5%">{{this.serving_size}}{{this.serving_unit}}</td>
+                                        <td><a href="#"> {{this.name}}</a></td>
                                         <td>{{this.calories}}cals protein:{{this.protein}}g carbs:{{this.carbs}}g fat:{{this.fat}}g</td>
                                         <td class="level-right"><button><ion-icon data-foodid="{{this.id}}" name="add-circle-outline"></ion-icon></button></td>
                                     </tr>
