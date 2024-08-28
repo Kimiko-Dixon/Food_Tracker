@@ -80,6 +80,7 @@ Once the application is running, you can:
 ![Homepage](./images/homepage.PNG)
 ![Foods Page](./images/foodsPage.PNG)
 ![Food Added](./images/addedFood.PNG)
+[Deployed Application](https://diettracker-cohh.onrender.com)
 
 ## Credits
 
